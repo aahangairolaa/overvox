@@ -15,7 +15,7 @@ class_name = "Room"
 tag = "v1"
 new_sqlite_classes = ["Room"]
 
-# v2.6 accounts: run once  npx wrangler kv namespace create ACCOUNTS  and paste the id below, then remove the # signs.
-# [[kv_namespaces]]
-# binding = "ACCOUNTS"
-# id = "PASTE_ID_HERE"
+# v2.9 accounts storage (Workers KV namespace ACCOUNTS, created 28 Nov 2026)
+[[kv_namespaces]]
+binding = "ACCOUNTS"
+id = "e98020f9ff1e4331bd147ca99617533d"
