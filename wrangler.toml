@@ -5,7 +5,7 @@ compatibility_date = "2025-06-01"
 [assets]
 directory = "./public"
 binding = "ASSETS"
-run_worker_first = ["/host/*", "/join/*"]
+run_worker_first = ["/host/*", "/join/*", "/api/*"]
 
 [[durable_objects.bindings]]
 name = "ROOMS"
@@ -14,3 +14,8 @@ class_name = "Room"
 [[migrations]]
 tag = "v1"
 new_sqlite_classes = ["Room"]
+
+# v2.6 accounts: run once  npx wrangler kv namespace create ACCOUNTS  and paste the id below, then remove the # signs.
+# [[kv_namespaces]]
+# binding = "ACCOUNTS"
+# id = "PASTE_ID_HERE"

@@ -3,6 +3,7 @@
 //   wss://<worker>/host/ABCD   the host opens the room
 //   wss://<worker>/join/ABCD   a player joins it
 const send = (ws, s) => { try { ws.send(s); } catch (e) { } };
+import { handleAccounts } from './accounts.js';   // v2.6: /api/* accounts
 export class Room {
   constructor(state, env) { this.host = null; this.clients = new Map(); this.n = 0; }
   async fetch(req) {
@@ -28,6 +29,7 @@ export class Room {
 }
 export default {
   async fetch(req, env) {
+    const acct = await handleAccounts(req, env); if (acct) return acct;
     const m = new URL(req.url).pathname.match(/^\/(host|join)\/([A-Z0-9]{4})$/);
     if (!m) return env.ASSETS ? env.ASSETS.fetch(req) : new Response('OVERVOX relay is running');
     return env.ROOMS.get(env.ROOMS.idFromName(m[2])).fetch(new Request('https://room/' + m[1], req));
